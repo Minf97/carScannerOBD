@@ -1,0 +1,32 @@
+.action {
+    position: absolute;
+    left: 25rpx;
+    right: 25rpx;
+    bottom: calc(25rpx + env(safe-area-inset-bottom));
+    z-index: 99999;
+    height: 600rpx;
+    background-color: #fff;
+    border-radius: 25rpx;
+    transition: 0.5s;
+    transform: translate(0, 150%);
+    padding: 0 30rpx 30rpx 30rpx;
+    box-sizing: border-box;
+}
+
+.active {
+    animation: action 0.5s ease-in-out 0s;
+}
+
+@keyframes action {
+    0% {
+        transform: translate(0, 150%);
+    }
+
+    40% {
+        transform: translate(0, -10%);
+    }
+
+    // 100% {
+    //     transform: translate(0, 0)
+    // }
+}

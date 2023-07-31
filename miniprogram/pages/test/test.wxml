@@ -1,0 +1,11 @@
+<!--index.wxml-->
+<view class="container">
+    <!-- 自定义头部 -->
+    <custom-header bgColor="#3a73ca" style="width: 100%; z-index: 999;">
+        <view class="head">
+            <van-icon bindtap="showPop" name="info-o" size="25" />
+        </view>
+    </custom-header>
+
+    <ec-canvas style="height: 50vh; background-image:linear-gradient(to bottom right, #2448a6, #122975) ;" id="mychart-dom-gauge" canvas-id="mychart-gauge1" ec="{{ ec }}"></ec-canvas>
+</view>

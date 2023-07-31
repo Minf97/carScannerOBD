@@ -1,0 +1,44 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/login/login",
+        "pages/panel/panel",
+        "pages/amdata/amdata",
+        "pages/test/test"
+    ],
+    "window": {
+        "backgroundTextStyle": "dark",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "black"
+    },
+    "usingComponents": {
+        "custom-loading-ani": "/components/custom-loading-ani/custom-loading-ani",
+        "custom-header": "./components/custom-header/index",
+        "custom-body": "/components/custom-body/custom-body",
+        "custom-action": "/components/custom-action/action",
+        "van-icon": "@vant/weapp/icon/index",
+        "van-toast": "@vant/weapp/toast/index",
+        "van-dialog": "@vant/weapp/dialog/index",
+        "van-popup": "@vant/weapp/popup/index"
+    },
+    "tabBar": {
+        "custom": true,
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页",
+                "iconPath": "/static/images/tabbar/home.png",
+                "selectedIconPath": "/static/images/tabbar/home_sel.png"
+            },
+            {
+                "pagePath": "pages/login/login",
+                "text": "登录",
+                "iconPath": "/static/images/tabbar/home.png",
+                "selectedIconPath": "/static/images/tabbar/home_sel.png"
+            }
+        ]
+    },
+    "sitemapLocation": "sitemap.json"
+}

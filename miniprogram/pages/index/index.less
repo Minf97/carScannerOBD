@@ -1,0 +1,90 @@
+page {
+    background-color: var(--color-bgColor);
+    --cell-background-color: var(--color-bgColor);
+    --cell-value-color: red;
+}
+
+.container {
+    height: 100vh;
+}
+
+
+.listBox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .box {
+        width: 33.3%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        image {
+            width: 100rpx;
+            height: 100rpx;
+        }
+
+        .txt {}
+    }
+}
+
+
+ec-canvas {
+    width: 100%;
+    height: 50vh;
+}
+
+.b {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    .b_left {
+        width: 50%;
+        height: 100%;
+    }
+
+    .b_right {
+        width: 50%;
+        height: 100%;
+    }
+}
+
+.speed {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    font-size: 18px;
+
+    .txt {
+        font-size: 40px;
+    }
+}
+
+.bottomBox {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+
+    .btn1 {
+        width: 60%;
+        margin: 0 10px 0 16px;
+    }
+
+    .btn2 {
+        width: 30%;
+    }
+
+    .btn3 {
+        width: calc(100% - 32px);
+        margin-left: 16px;
+    }
+}
+

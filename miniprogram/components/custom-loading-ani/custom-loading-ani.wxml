@@ -1,0 +1,7 @@
+<view slot="refresh" class="refresh-container">
+    <view class="view1" style="text-align: center; width: 100%;">
+        <view class="box {{showAnimation ? 'box1' : ''}}"></view>
+        <view class="box {{showAnimation ? 'box2' : ''}}"></view>
+        <view class="box {{showAnimation ? 'box3' : ''}}"></view>
+    </view>
+</view>

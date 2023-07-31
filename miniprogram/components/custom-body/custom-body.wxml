@@ -1,0 +1,27 @@
+<wxs src="/static/common/refresh.wxs" module="refresh"></wxs>
+
+
+<!-- 
+    高度计算：屏幕内可用高度 - 自定义头部 - 自定义tabbar
+ -->
+<scroll-view
+ scroll-y 
+ style="height: calc({{height}} - {{statusBarHeight + customBar}}px - {{tabbarHeight}} - {{safeAreaInsetBottom}});" 
+ id="scrollBox"
+ class="scrollBox" 
+ refresher-enabled="{{true}}" 
+ refresher-threshold="{{50}}" 
+ refresher-default-style="none" 
+ refresher-background="#fff" 
+ bindrefresherrefresh="onPullDownRefresh" 
+ bindrefresherrestore="stopPullDownRefresh" 
+ bindrefresherabort="stopPullDownRefresh" 
+ bindscrolltolower="onReachBottom"
+ bindrefresherpulling="{{refresh.onPulling}}" 
+ refresher-triggered="{{triggered}}"
+>
+    <!-- 下拉刷新动画 -->
+    <custom-loading-ani style="width: 100%;" slot="refresher" id="loadingAni" />
+    <slot></slot>
+</scroll-view>
+
