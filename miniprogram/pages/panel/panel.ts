@@ -109,7 +109,8 @@ function initChart3(canvas, width, height, dpr) {
                 progress: {
                     show: false
                 },
-                max: 7000,
+                min: -20,
+                max: 120,
                 // 仪表盘半径
                 radius: '90%',
                 // 仪表盘刻度分割段数
@@ -170,8 +171,8 @@ function initChart3(canvas, width, height, dpr) {
                 // 展示的数据，可以有多段数据，即多个object
                 data: [
                     {
-                        value: 3500,
-                        name: '发动机转速'
+                        value: 0,
+                        name: '冷却液温度'
                     },
                 ]
             }
@@ -195,7 +196,7 @@ Page({
         // tabbar的安全距离
         safeAreaInsetBottom: "env(safe-area-inset-bottom)",
         ec1: { onInit: initChart1 },
-
+        speed: 0,
     },
     engineTimer: null,
     tmpTimer: null,
@@ -222,31 +223,27 @@ Page({
             app.obd.sendOBD('0105');
             // 车速
             app.obd.sendOBD('010D');
-        }, 1000)
+        }, 200)
     },
 
     TCPcallback(message) {
-        console.log(message, 233);
+        message = message.replace(/\s/g, '');
+        console.log("原始数据：", message);
         // 转速
-        if (message.indexOf('410C')) {
+        if (message.includes('410C')) {
             const [, value] = message.split('410C');
-            // TODO转换十六进制
-            // value
-            option1.series[0].data[0].value = value;
+            option1.series[0].data[0].value = parseInt(value, 16);
             chart1.setOption(option1)
         }
         // 车速
-        if (message.indexOf('410D')) {
+        if (message.includes('410D')) {
             const [, value] = message.split('410D');
-            // TODO转换十六进制
-            // value
+            this.setData({ speed: parseInt(value, 16) })
         }
         // 水温
-        if (message.indexOf('4105')) {
-            const [, value] = message.split('410C');
-            // TODO转换十六进制
-            // value
-            option3.series[0].data[0].value = value;
+        if (message.includes('4105')) {
+            const [, value] = message.split('4105');
+            option3.series[0].data[0].value = parseInt(value, 16);
             chart3.setOption(option3)
         }
     },
@@ -256,6 +253,12 @@ Page({
     },
     onClickHide() {
         this.setData({ show: false })
+    },
+    onHide() {
+        clearInterval(this.engineTimer)
+    },
+    onUnload() {
+        clearInterval(this.engineTimer)
     },
 
     onShareAppMessage(opts): WechatMiniprogram.Page.ICustomShareContent {

@@ -23,13 +23,28 @@ function initChart(canvas, width, height, dpr) {
         xAxis: {
             type: 'category',
             boundaryGap: false,
+            // data: [0],
+            axisLabel: {
+                interval: 4,
+                formatter: function (value, index) {
+                    const s = parseInt(value / 1000);
+                    const m = parseInt(s / 60);
+                    const formatNumber = n => n.toString().length < 2 ? `0${n}` : `${n}`
+                    return `${m}:${formatNumber(s - m * 60)}`
+                },
+            }
             // data: [0.5,1,1.5],
             // show: false
         },
         yAxis: {
             x: 'center',
             type: 'value',
-            
+            axisLabel: {
+                formatter: function (value, index) {
+                    return value / 1000
+                },
+            },
+
             // 次坐标轴
             minorTick: {
                 show: true,
@@ -50,10 +65,8 @@ function initChart(canvas, width, height, dpr) {
             type: 'line',
             // 平滑展示
             smooth: false,
-            data: [
-                [1,2],
-                [2,3]
-            ]
+            symbolSize: 0,
+            data: [[0, 1], [1, 2]]
         }]
     };
 
@@ -76,23 +89,35 @@ Page({
             onInit: initChart
         }
     },
-
+    n: 0,
     onShow() {
         this.engineTimer = setInterval(() => {
             // 发动机转速
             app.obd.sendOBD('0142');
+            this.n++;
         }, 1000)
     },
 
     TCPcallback(message) {
         console.log(message, 233);
         // OBD电压
-        if (message.indexOf('4142')) {
+        if (message.includes('4142')) {
             const [, value] = message.split('4142');
             // TODO转换十六进制
-            // value
-            option1.series[0].data.push(value)
+            const x = this.n * 1000;
+            const y = parseInt(value, 16);
+            const chartData = option1.series[0].data;
+            if (chartData.length > 20) {
+                option1.series[0].data = chartData.splice(10)
+            }
+            chartData.push([x, y]);
             chart1.setOption(option1)
         }
+    },
+    onHide() {
+        clearInterval(this.engineTimer)
+    },
+    onUnload() {
+        clearInterval(this.engineTimer)
     },
 });

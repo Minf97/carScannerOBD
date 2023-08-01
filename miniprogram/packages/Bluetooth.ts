@@ -276,6 +276,7 @@ export class BluetoothModel {
                     .finally(() => {
                         this.connectionState = true;
                         console.log("连接成功");
+                        this.sendOBD('ATZ');
                     })
             })
     }
@@ -444,7 +445,7 @@ export class BluetoothModel {
 
         const vv = hexToAscii(order.join(''));
         const hex = str2abc(vv);
-        console.log("发送：", vv);
+        // console.log("发送：", vv);
 
 
         wx.writeBLECharacteristicValue({

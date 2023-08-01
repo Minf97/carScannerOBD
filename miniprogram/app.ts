@@ -24,6 +24,7 @@ App<IAppOption>({
                 const p = getCurrentPages();
                 const firstPage = p[0];
                 const lastPage = p[p.length - 1];
+                message = message.replace(/\s/g, '');
                 // 将消息传入页面的TCPcallback中
                 typeof (lastPage.TCPcallback) === 'function'
                     ? lastPage.TCPcallback(message)

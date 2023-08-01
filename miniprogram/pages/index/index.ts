@@ -17,34 +17,34 @@ const list = [
         isC: false,
         event: 'naviTo'
     },
-    {
-        id: 'sensor',
-        img: '/static/images/index/sensor.png',
-        txt: '所有传感器',
-        isC: false,
-        event: 'naviTo'
-    },
-    {
-        id: 'diagnosis',
-        img: '/static/images/index/diagnosis.png',
-        txt: '诊断故障代码',
-        isC: false,
-        event: 'naviTo'
-    },
-    {
-        id: 'save',
-        img: '/static/images/index/save.png',
-        txt: '定格',
-        isC: false,
-        event: 'naviTo'
-    },
-    {
-        id: 'constant',
-        img: '/static/images/index/constant.png',
-        txt: '非连续监视器',
-        isC: false,
-        event: 'naviTo'
-    }
+    // {
+    //     id: 'sensor',
+    //     img: '/static/images/index/sensor.png',
+    //     txt: '所有传感器',
+    //     isC: false,
+    //     event: 'naviTo'
+    // },
+    // {
+    //     id: 'diagnosis',
+    //     img: '/static/images/index/diagnosis.png',
+    //     txt: '诊断故障代码',
+    //     isC: false,
+    //     event: 'naviTo'
+    // },
+    // {
+    //     id: 'save',
+    //     img: '/static/images/index/save.png',
+    //     txt: '定格',
+    //     isC: false,
+    //     event: 'naviTo'
+    // },
+    // {
+    //     id: 'constant',
+    //     img: '/static/images/index/constant.png',
+    //     txt: '非连续监视器',
+    //     isC: false,
+    //     event: 'naviTo'
+    // }
 ]
 
 Page({
@@ -65,6 +65,11 @@ Page({
     },
 
     naviTo({ currentTarget: { dataset: { id } } }) {
+        const { state } = this.data
+        if (!state) {
+            Toast.fail('请先连接OBD');
+            return;
+        }
         // 仪表盘
         if (id === 'panel') {
             wx.navigateTo({ url: "/pages/panel/panel" })
@@ -77,7 +82,7 @@ Page({
 
     TCPcallback(message) {
         console.log(message);
-        
+
     },
 
     // 连接OBD
@@ -130,7 +135,15 @@ Page({
     },
 
     disconnect() {
-
+        const { txtExit, state } = this.data;
+        if (state && txtExit == '离开样本模式') {
+            this.setData({
+                state: false,
+                ELM: "已断开",
+                ECU: "已断开",
+            })
+        }
+        // if(state && txtExit == '离开样本模式')
     },
 
     demo({ detail: { value } }) {

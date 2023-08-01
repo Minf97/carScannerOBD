@@ -19,7 +19,11 @@
     <view class="b" style="height: calc(50vh - {{statusBarHeight + customBar}}px - {{safeAreaInsetBottom}} - 2px); background-image: linear-gradient(to bottom right, #2448a6, #122975);">
         <!-- 下左 -->
         <view class="b_left">
-            
+            <view class="speed">
+                <view>速度</view>
+                <view class="txt">{{speed}}</view>
+                <view>km/h</view>
+            </view>
         </view>
 
         <!-- 占位空隙 -->

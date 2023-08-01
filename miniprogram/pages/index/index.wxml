@@ -15,15 +15,15 @@
             </view>
         </view>
 
-        <input type="text" bindinput="demo" style="width: 60%; margin-left: 20px; background-color: pink;" />
-        <button bindtap="submit">发送</button>
+        <!-- <input type="text" bindinput="demo" style="width: 60%; margin-left: 20px; background-color: pink;" />
+        <button bindtap="submit">发送</button> -->
 
 
         <!-- 底部 -->
         <view class="bottomBox">
             <van-cell-group>
-                <van-cell title="ELM连接" value="{{ELM}}" />
-                <van-cell title="ECU连接" value="{{ECU}}" border="{{ false }}" />
+                <van-cell value-class="{{ELM == '已断开' ? '' : 'connected'}}" title="ELM连接" value="{{ELM}}" />
+                <van-cell value-class="{{ECU == '已断开' ? '' : 'connected'}}" title="ECU连接" value="{{ECU}}" border="{{ false }}" />
             </van-cell-group>
 
             <van-button wx:if="{{!state}}" custom-class="btn1" type="primary" bind:click="connectOBD">接通</van-button>
