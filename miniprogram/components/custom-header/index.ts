@@ -10,7 +10,10 @@ Component({
             type: Boolean,
             value: false
         },
-        
+        backIconColor: {
+            type: String,
+            value: ''
+        }
     },
     data: {
         // 状态栏高度

@@ -1,4 +1,4 @@
-<view class="action {{show ? 'active' : ''}}" style="transform: {{show ? 'translate(0,0)' : 'translate(0,150%)'}};">
+<view class="action {{show ? 'active' : ''}}" style="height:{{height}}rpx; transform: {{show ? 'translate(0,0)' : 'translate(0,150%)'}};">
     <slot />
 </view>
 <van-overlay show="{{show}}" z-index="99998" bind:click="onClickHide" />

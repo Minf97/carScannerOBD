@@ -3,7 +3,8 @@
         <view style="height: {{statusBarHeight}}px; position: fixed; width: 100%; background-color: {{bgColor}}; z-index: 1;"></view>
 
         <view class="customBar" style="height: {{customBar}}px; background-color: {{bgColor}}; top: {{statusBarHeight}}px;">
-            <image wx:if="{{back}}" catchtap="backPage" class="left" src="./left.png" mode="aspectFit" />
+            <!-- <image wx:if="{{back}}" catchtap="backPage" class="left" src="./left.png" mode="aspectFit" /> -->
+            <van-icon wx:if="{{back}}" style="color: {{backIconColor}};" size="25" catchtap="backPage" class="left" name="arrow-left" />
             <slot></slot>
         </view>
     </view>

@@ -7,6 +7,10 @@ Component({
         show: {
             type: Boolean,
             value: false
+        },
+        height: {
+            type: String,
+            value: '600'
         }
     },
 

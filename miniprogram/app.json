@@ -4,7 +4,11 @@
         "pages/login/login",
         "pages/panel/panel",
         "pages/amdata/amdata",
-        "pages/test/test"
+        "pages/test/test",
+        "pages/diagnosis/diagnosis",
+        "pages/diagnosis/reading/reading",
+        "pages/diagnosis/readData/readData",
+        "pages/sensor/sensor"
     ],
     "window": {
         "backgroundTextStyle": "dark",

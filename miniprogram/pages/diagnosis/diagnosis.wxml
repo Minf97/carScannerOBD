@@ -1,0 +1,27 @@
+<!-- 自定义头部 -->
+<custom-header backIconColor="#fff" bgColor="#3a73ca" back style="width: 100%; z-index: 999;">
+    <view class="head">
+        诊断故障代码
+    </view>
+</custom-header>
+
+<view class="container">
+    <text> 诊断故障代码，也叫“错误”是指电子控制设备发现故障出示的字母和数字的代码。有三种代码: </text>
+    <text> 1)当电子控制设备确认的故障，将在储存下记录保存的代码。在最后一个路程或最后几个路程发现的故障被确认的故障。此代码在电子控制设备一段时间保存 (一般40-80个路程，同时当再次发现故障时计数器在更新) </text>
+    <text> 2)暂时代码是指在当前路程未确认的故障。当故障再次发现，将代码变成保存代码。汽车关闭时暂时代码未变成保存的代码被取消。 </text>
+    <text> 3)常设代码是指确认的和保存的故障，使用软件不能取消此种代码说明需要处理严重的故障，处理后代码取消。 </text>
+    <text> 处理故障代码: </text>
+    <text> 1)如果要处理故障代码，请注意大多数电子控制设备在发动机运行时不允许处理代码。</text>
+    <text> 2)打开点火开关，但不要启动发动机! </text>
+    <text> 3)连接上Car Scanner ，进行故障代码处理</text>
+    <text> 4)关闭点火开关 </text>
+    <text> 5)正常启动汽车 </text>
+
+
+
+    <view class="title">选择动作：</view>
+    <view class="box">
+        <view class="cc" bindtap="naviTo" data-index="reading">阅读</view>
+        <view class="cc" bindtap="naviTo" data-index="clear">清空</view>
+    </view>
+</view>

@@ -1,0 +1,20 @@
+<!-- 自定义头部 -->
+<custom-header backIconColor="#fff" bgColor="#3a73ca" back style="width: 100%; z-index: 999;">
+    <view class="head">
+        所有传感器
+        <van-icon bindtap="showPop" name="info-o" size="20" />
+    </view>
+</custom-header>
+
+<view class="container">
+    <van-cell size="large" is-link wx:for="{{sensorList}}" title="{{item.name}}" value="{{item.value + ' ' + item.danwei}}" />
+</view>
+
+<custom-action show="{{show}}" height="400" bind:onClickHide="onClickHide">
+    <view class="header"> 所有传感器 </view>
+    <text class="txt_action">
+        受支持的车辆传感器列表完全取决于车辆的 ECU。
+        在“所有传感器”模式下，传感器的更新率很低，因为它们被轮询。
+        您可以单击任何传感器以高刷新率查看其图表。
+    </text>
+</custom-action>

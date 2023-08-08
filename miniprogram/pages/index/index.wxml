@@ -15,8 +15,8 @@
             </view>
         </view>
 
-        <!-- <input type="text" bindinput="demo" style="width: 60%; margin-left: 20px; background-color: pink;" />
-        <button bindtap="submit">发送</button> -->
+        <input type="text" bindinput="demo" style="width: 60%; margin-left: 20px; background-color: pink;" />
+        <button bindtap="submit">发送</button>
 
 
         <!-- 底部 -->

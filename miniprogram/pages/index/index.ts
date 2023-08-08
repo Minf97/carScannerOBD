@@ -17,34 +17,34 @@ const list = [
         isC: false,
         event: 'naviTo'
     },
-    // {
-    //     id: 'sensor',
-    //     img: '/static/images/index/sensor.png',
-    //     txt: '所有传感器',
-    //     isC: false,
-    //     event: 'naviTo'
-    // },
-    // {
-    //     id: 'diagnosis',
-    //     img: '/static/images/index/diagnosis.png',
-    //     txt: '诊断故障代码',
-    //     isC: false,
-    //     event: 'naviTo'
-    // },
-    // {
-    //     id: 'save',
-    //     img: '/static/images/index/save.png',
-    //     txt: '定格',
-    //     isC: false,
-    //     event: 'naviTo'
-    // },
-    // {
-    //     id: 'constant',
-    //     img: '/static/images/index/constant.png',
-    //     txt: '非连续监视器',
-    //     isC: false,
-    //     event: 'naviTo'
-    // }
+    {
+        id: 'sensor',
+        img: '/static/images/index/sensor.png',
+        txt: '所有传感器',
+        isC: false,
+        event: 'naviTo'
+    },
+    {
+        id: 'diagnosis',
+        img: '/static/images/index/diagnosis.png',
+        txt: '诊断故障代码',
+        isC: false,
+        event: 'naviTo'
+    },
+    {
+        id: 'save',
+        img: '/static/images/index/save.png',
+        txt: '定格',
+        isC: false,
+        event: 'naviTo'
+    },
+    {
+        id: 'constant',
+        img: '/static/images/index/constant.png',
+        txt: '非连续监视器',
+        isC: false,
+        event: 'naviTo'
+    }
 ]
 
 Page({
@@ -66,18 +66,18 @@ Page({
 
     naviTo({ currentTarget: { dataset: { id } } }) {
         const { state } = this.data
-        if (!state) {
-            Toast.fail('请先连接OBD');
-            return;
-        }
+        // if (!state) {
+        //     Toast.fail('请先连接OBD');
+        //     return;
+        // }
         // 仪表盘
-        if (id === 'panel') {
-            wx.navigateTo({ url: "/pages/panel/panel" })
-        }
+        if (id === 'panel') wx.navigateTo({ url: "/pages/panel/panel" })
         // 实时数据
-        if (id === 'amdata') {
-            wx.navigateTo({ url: "/pages/amdata/amdata" })
-        }
+        if (id === 'amdata') wx.navigateTo({ url: "/pages/amdata/amdata" })
+        // 所有传感器
+        if (id === 'sensor') wx.navigateTo({ url: "/pages/sensor/sensor" })
+        // 诊断故障代码
+        if (id === 'diagnosis') wx.navigateTo({ url: "/pages/diagnosis/diagnosis" })
     },
 
     TCPcallback(message) {
