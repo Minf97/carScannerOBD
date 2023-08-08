@@ -38,13 +38,13 @@ const list = [
         isC: false,
         event: 'naviTo'
     },
-    {
-        id: 'constant',
-        img: '/static/images/index/constant.png',
-        txt: '非连续监视器',
-        isC: false,
-        event: 'naviTo'
-    }
+    // {
+    //     id: 'constant',
+    //     img: '/static/images/index/constant.png',
+    //     txt: '非连续监视器',
+    //     isC: false,
+    //     event: 'naviTo'
+    // }
 ]
 
 Page({
