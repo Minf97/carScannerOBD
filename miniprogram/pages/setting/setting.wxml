@@ -1,0 +1,31 @@
+<wxs src="/static/common/refresh.wxs" module="refresh"></wxs>
+
+<view class="container">
+    <!-- 自定义头部 -->
+    <custom-header bgColor="#3a73ca" style="width: 100%; z-index: 999;">
+        <view style="color: #fff;">终端</view>
+    </custom-header>
+
+
+    <custom-body bind:onPullDownRefresh="onPullDownRefresh">
+        
+		<view style="width: 100%; height: 30rpx;"></view>
+		<!-- 调试专用 -->
+        <input type="text" bindinput="demo" bindconfirm="submit"  />
+        <button type="primary" bindtap="submit">发送</button>
+		<scroll-view scroll-y style="width: 90%; border: 1rpx solid #ccc;margin: 0 auto; margin: 20rpx auto; height: 800rpx; border-radius: 10rpx;">
+			<view class="box" wx:for="{{list}}">
+				<view class="sendVal">{{item.sendVal}}</view>
+				<view class="returnVal">>> {{item.returnVal}}</view>
+			</view>
+			<text>{{returnVal}}</text>
+		</scroll-view>
+
+    </custom-body>
+</view>
+
+
+<!-- 提示 -->
+<van-toast id="van-toast" />
+<!-- 弹窗 -->
+<van-dialog id="van-dialog" />

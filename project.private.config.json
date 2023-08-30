@@ -35,6 +35,20 @@
                     "query": "reading=undefined",
                     "launchMode": "default",
                     "scene": null
+                },
+                {
+                    "name": "pages/diagnosis/readData/readData",
+                    "pathName": "pages/diagnosis/readData/readData",
+                    "query": "radio=zidong&tip1State=false&tip2State=false&active=1",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "pages/setting/setting",
+                    "pathName": "pages/setting/setting",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
                 }
             ]
         }

@@ -14,10 +14,13 @@
                 <view class="txt">{{item.txt}}</view>
             </view>
         </view>
-
+		<!-- 调试专用 -->
         <input type="text" bindinput="demo" style="width: 60%; margin-left: 20px; background-color: pink;" />
         <button bindtap="submit">发送</button>
-
+		<!-- <textarea value="{{returnVal}}" auto-height disabled style="width: 100%; border: 1rpx solid #ccc; margin: 20rpx auto; min-height: 300rpx;" /> -->
+		<scroll-view scroll-y style="width: 100%; border: 1rpx solid #ccc; margin: 20rpx auto; height: 300rpx;">
+			<text>{{returnVal}}</text>
+		</scroll-view>
 
         <!-- 底部 -->
         <view class="bottomBox">

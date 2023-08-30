@@ -11,7 +11,8 @@ App<IAppOption>({
     // ATZ: [41, 54, '5A', '0D'],
     // ATE0: [41, 54, 45, 30, '0D'],
     // ATE1: [41, 54, 45, 31, '0D'],
-    obd: null,
+	obd: null,
+	isTest: false,
     onLaunch() {
         // 自定义头部所需的系统信息
         const systemInfo = wx.getSystemInfoSync();
@@ -24,7 +25,10 @@ App<IAppOption>({
                 const p = getCurrentPages();
                 const firstPage = p[0];
                 const lastPage = p[p.length - 1];
-                message = message.replace(/\s/g, '');
+				message = message.replace(/\s/g, '');
+
+				
+				message.includes('>') && (this.obd.receiveFlag = true);
                 // 将消息传入页面的TCPcallback中
                 typeof (lastPage.TCPcallback) === 'function'
                     ? lastPage.TCPcallback(message)

@@ -8,7 +8,8 @@
         "pages/diagnosis/diagnosis",
         "pages/diagnosis/reading/reading",
         "pages/diagnosis/readData/readData",
-        "pages/sensor/sensor"
+        "pages/sensor/sensor",
+        "pages/setting/setting"
     ],
     "window": {
         "backgroundTextStyle": "dark",

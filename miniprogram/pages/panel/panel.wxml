@@ -8,7 +8,7 @@
 
 
     <!-- 上半区域 -->
-    <view style="width: 100%; height: 50vh; background-image: linear-gradient(to bottom right, #2448a6, #122975); position: relative;">
+    <view style="width: 100%; height: 50vh; background-image: linear-gradient(to bottom right, #2448a6, #122975); position: relative; ">
         <ec-canvas id="echart-gauge1" canvas-id="echart-gauge" ec="{{ec1}}"></ec-canvas>
     </view>
 

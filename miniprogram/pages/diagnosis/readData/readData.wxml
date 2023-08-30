@@ -1,48 +1,29 @@
 <!-- 自定义头部 -->
 <custom-header backIconColor="#fff" bgColor="#3a73ca" back style="width: 100%; z-index: 999;">
-    <view class="head"> 阅读 </view>
+	<view class="head"> 阅读 </view>
 </custom-header>
 
 <view class="container">
-    <view class="title">选择读取DTC/清除DTC 模式:</view>
-
-    <!-- 按钮 -->
-    <van-radio-group value="{{ radio }}" bind:change="onRadio">
-        <van-radio name="zidong">自动（推荐）</van-radio>
-        <view style="width: 100%;height: 30rpx;"></view>
-        <van-radio name="gaoji">高级</van-radio>
-    </van-radio-group>
-
-    <!-- 自动 -->
-    <view wx:if="{{radio == 'zidong'}}">
-        <text style="margin: 50rpx 0; display: block;">{{zidongTip}}</text>
-    </view>
-
-    <!-- 高级 -->
-    <view wx:if="{{radio == 'gaoji'}}">
-        <!-- 占位 -->
-        <view style="width: 100%;height: 50rpx;"></view>
-        <!-- 滑块 -->
-        <view style="color: {{list[active].color}}; margin-bottom: 20rpx;">{{list[active].title}}</view>
-        <van-slider max="4" value="{{active}}" step="1" bind:drag="onSlider" />
-        <!-- 内容 -->
-        <text style="margin: 40rpx 0; display: block;">{{list[active].content}}</text>
-    </view>
-
-    <!-- 提示 -->
-    <view wx:if="{{tipFlag}}">
-        <view class="title">Acura OBD-II/EOBD + AT(CAN)</view>
-        <view class="tip">
-            <text style="margin-right: 20rpx;">{{tip1}}</text>
-            <van-switch checked="{{ tip1State }}" bind:change="onSwitch1" />
-        </view>
-        <view class="tip">
-            <text style="margin-right: 20rpx;">{{tip2}}</text>
-            <van-switch checked="{{ tip2State }}" bind:change="onSwitch2" />
-        </view>
-    </view>
+	<block wx:for="{{list}}" wx:key="{{item.code}}">
+		<van-cell clickable label="{{item.desc}}">
+			<!-- 标题插槽 -->
+			<view slot="title">
+				<view class="van-cell-text">{{item.code}}</view>
+				<view class="tagList">
+					<van-tag type="primary" style="margin-right: 20rpx;">{{item.system}}</van-tag>
+					<van-tag type="warning">{{item.state}}</van-tag>
+				</view>
+			</view>
+			<!-- 右边删除按钮 -->
+			<van-icon slot="right-icon" name="delete" class="custom-icon" />
+		</van-cell>
+	</block>
 
 
-    <!-- 阅读 -->
-    <view class="cc" bindtap="naviTo" style="position: absolute;bottom: 100rpx; color: #3a73ca;left: 50%;transform: translateX(-50%);">阅读</view>
+
 </view>
+
+<!-- 提示 -->
+<van-toast id="van-toast" />
+<!-- 弹窗 -->
+<van-dialog id="van-dialog" />
