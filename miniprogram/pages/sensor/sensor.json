@@ -1,4 +1,5 @@
 {
+    "enablePullDownRefresh": false,
     "usingComponents": {
         "van-cell": "@vant/weapp/cell/index"
     }

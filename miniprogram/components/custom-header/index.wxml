@@ -1,6 +1,6 @@
-<view class="container" style="height: {{statusBarHeight+customBar}}px;background-color: {{bgColor}}; ">
-    <view style="height: {{customBar + statusBarHeight}}px; background-color: {{bgColor}};">
-        <view style="height: {{statusBarHeight}}px; position: fixed; width: 100%; background-color: {{bgColor}}; z-index: 1;"></view>
+<view class="container" style="height: {{statusBarHeight+customBar}}px; ">
+    <view style="height: {{customBar + statusBarHeight}}px; ">
+        <view style="height: {{statusBarHeight}}px; position: fixed; width: 100%; z-index: 1; background-color: {{bgColor}};"></view>
 
         <view class="customBar" style="height: {{customBar}}px; background-color: {{bgColor}}; top: {{statusBarHeight}}px;">
             <!-- <image wx:if="{{back}}" catchtap="backPage" class="left" src="./left.png" mode="aspectFit" /> -->

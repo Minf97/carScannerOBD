@@ -15,7 +15,7 @@
 				</view>
 			</view>
 			<!-- 右边删除按钮 -->
-			<van-icon slot="right-icon" name="delete" class="custom-icon" />
+			<van-icon slot="right-icon" catchtap="del" data-index="{{index}}" name="delete" class="custom-icon" />
 		</van-cell>
 	</block>
 

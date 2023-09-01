@@ -73,46 +73,59 @@ const sensorList = [
         danwei: "kPa",
         command: "0122"
     },
-    {
-        name: "蒸发系统蒸气压力 ",
-        value: "1.7",
-        danwei: "Pa"
-    },
-]
-
+    // {
+    //     name: "蒸发系统蒸气压力 ",
+    //     value: "1.7",
+    //     danwei: "Pa"
+    // },
+];
 Page({
     data: {
         sensorList,
         show: false,
     },
+    timer: null,
 
     onLoad() {
 
     },
 
-    onShow() {
+    TCPcallback(message) {
+        message = message.replace(/\s/g, '');
+        sensorList.map((item, index) => {
+            const command = "4" + item.command.slice(1, item.command.length);
+            if (message.includes(command)) {
+                const [, value] = message.split(command);
+                this.setData({ [`sensorList[${index}].value`]: parseInt(value, 16) })
+            }
+        })
+    },
 
+    onShow() {
+        sensorList.map(item => {
+            getApp().obd.sendOBD(item.command)
+        })
+        clearInterval(this.timer)
+        this.timer = setInterval(() => {
+            sensorList.map(item => {
+                getApp().obd.sendOBD(item.command)
+            })
+        }, 5000)
     },
 
     showPop() {
         this.setData({ show: true })
     },
-    
+
     onClickHide() {
         this.setData({ show: false })
     },
 
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
     onHide() {
-
+        clearInterval(this.timer)
     },
 
-    /**
-     * 生命周期函数--监听页面卸载
-     */
     onUnload() {
-
+        clearInterval(this.timer)
     },
 })

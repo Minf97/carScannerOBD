@@ -28,7 +28,9 @@ Component({
         // 下拉刷新标志位
         triggered: false,
         // tababr栏高度
-        tabbarHeight: "var(--tabbar-height, 50px)",
+        // tabbarHeight: "var(--tabbar-height, 50px)",
+        tabbarHeight: "20px",
+
         // tabbar的安全距离
         safeAreaInsetBottom: "env(safe-area-inset-bottom)"
     },

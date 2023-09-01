@@ -238,6 +238,7 @@ export class BluetoothModel {
                         this.sendOBD('ATH0');
                         this.sendOBD('ATAT1');
                         this.sendOBD('ATSP6');
+                        Toast.success('蓝牙连接 ELM 成功')
                     })
             })
     }
