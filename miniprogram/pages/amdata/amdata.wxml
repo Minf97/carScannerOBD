@@ -3,7 +3,7 @@
     <custom-header backIconColor="#fff" back bgColor="#3a73ca" style="width: 100%; z-index: 999;">
         <view class="head">
             实时数据
-            <van-icon style="margin-left: 10rpx;" bindtap="showPop" name="info-o" size="20" />
+            <!-- <van-icon style="margin-left: 10rpx;" bindtap="showPop" name="info-o" size="20" /> -->
         </view>
     </custom-header>
 

@@ -1,40 +1,39 @@
 <wxs src="/static/common/refresh.wxs" module="refresh"></wxs>
 
 <view class="container">
-    <!-- 自定义头部 -->
-    <custom-header bgColor="#3a73ca" style="width: 100%; z-index: 999;">
-        <view style="color: #fff;">Car Scanner</view>
-    </custom-header>
+  <!-- 自定义头部 -->
+  <custom-header bgColor="#3a73ca" style="width: 100%; z-index: 999;">
+    <view style="color: #fff;">Car Scanner</view>
+  </custom-header>
 
 
-    <custom-body bind:onPullDownRefresh="onPullDownRefresh">
-        <view class="listBox">
-            <view class="box" wx:for="{{list}}" wx:key="{{item.id}}" data-id="{{item.id}}" bindtap="{{item.event}}">
-                <image src="{{item.img}}" mode="aspectFill" />
-                <view class="txt">{{item.txt}}</view>
-            </view>
-        </view>
-		<!-- 调试专用 -->
-        <input type="text" bindinput="demo" style="width: 60%; margin-left: 20px; background-color: pink;" />
-        <button bindtap="submit">发送</button>
-		<!-- <textarea value="{{returnVal}}" auto-height disabled style="width: 100%; border: 1rpx solid #ccc; margin: 20rpx auto; min-height: 300rpx;" /> -->
-		<scroll-view scroll-y style="width: 100%; border: 1rpx solid #ccc; margin: 20rpx auto; height: 300rpx;">
-			<text>{{returnVal}}</text>
-		</scroll-view>
+  <custom-body bind:onPullDownRefresh="onPullDownRefresh">
+    <view class="listBox">
+      <view class="box" wx:for="{{list}}" wx:key="{{item.id}}" data-id="{{item.id}}" bindtap="{{item.event}}">
+        <image src="{{item.img}}" mode="aspectFill" />
+        <view class="txt">{{item.txt}}</view>
+      </view>
+    </view>
+    <!-- 调试专用 -->
+    <!-- <input type="text" bindinput="demo" style="width: 60%; margin-left: 20px; background-color: pink;" />
+    <button bindtap="submit">发送</button> -->
+    <!-- <scroll-view scroll-y style="width: 100%; border: 1rpx solid #ccc; margin: 20rpx auto; height: 300rpx;">
+      <text>{{returnVal}}</text>
+    </scroll-view> -->
 
-        <!-- 底部 -->
-        <view class="bottomBox">
-            <van-cell-group>
-                <van-cell wx:if="{{VIN}}" title="VIN" value="{{VIN}}" />
-                <van-cell value-class="{{ELM == '已断开' ? '' : 'connected'}}" title="ELM连接" value="{{ELM}}" />
-                <van-cell value-class="{{ECU == '已断开' ? '' : 'connected'}}" title="ECU连接" value="{{ECU}}" border="{{ false }}" />
-            </van-cell-group>
+    <!-- 底部 -->
+    <view class="bottomBox">
+      <van-cell-group>
+        <van-cell wx:if="{{VIN}}" title="VIN" value="{{VIN}}" />
+        <van-cell value-class="{{ELM == '已断开' ? '' : 'connected'}}" title="ELM连接" value="{{ELM}}" />
+        <van-cell value-class="{{ECU == '已断开' ? '' : 'connected'}}" title="ECU连接" value="{{ECU}}" border="{{ false }}" />
+      </van-cell-group>
 
-            <van-button wx:if="{{!state}}" custom-class="btn1" type="primary" bind:click="connectOBD">接通</van-button>
-            <van-button wx:if="{{!state}}" custom-class="btn2" type="primary" bind:click="setExample">样本</van-button>
-            <van-button wx:if="{{state}}" custom-class="btn3" type="danger" bind:click="disconnect">{{txtExit}}</van-button>
-        </view>
-    </custom-body>
+      <van-button wx:if="{{!state}}" custom-class="btn1" type="primary" bind:click="connectOBD">接通</van-button>
+      <van-button wx:if="{{!state}}" custom-class="btn2" type="primary" bind:click="setExample">样本</van-button>
+      <van-button wx:if="{{state}}" custom-class="btn3" type="danger" bind:click="disconnect">{{txtExit}}</van-button>
+    </view>
+  </custom-body>
 </view>
 
 
@@ -44,7 +43,7 @@
 <van-dialog id="van-dialog" />
 
 <custom-action show="{{show}}">
-    <view>
-        ddd
-    </view>
+  <view>
+    ddd
+  </view>
 </custom-action>
