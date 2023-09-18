@@ -24,7 +24,7 @@
     <!-- 底部 -->
     <view class="bottomBox">
       <van-cell-group>
-        <van-cell wx:if="{{VIN}}" title="VIN" value="{{VIN}}" />
+        <van-cell value-class="connected" wx:if="{{VIN}}" title="VIN" value="{{VIN}}" />
         <van-cell value-class="{{ELM == '已断开' ? '' : 'connected'}}" title="ELM连接" value="{{ELM}}" />
         <van-cell value-class="{{ECU == '已断开' ? '' : 'connected'}}" title="ECU连接" value="{{ECU}}" border="{{ false }}" />
       </van-cell-group>

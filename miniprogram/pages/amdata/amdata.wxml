@@ -2,15 +2,22 @@
     <!-- 自定义头部 -->
     <custom-header backIconColor="#fff" back bgColor="#3a73ca" style="width: 100%; z-index: 999;">
         <view class="head">
-            实时数据
-            <!-- <van-icon style="margin-left: 10rpx;" bindtap="showPop" name="info-o" size="20" /> -->
+            <view style="width: calc({{width}}); display: flex; text-align: center;">
+                <view style="flex: 1;">1</view>
+                <view style="flex: 1;">2</view>
+                <view style="flex: 1;">3</view>
+            </view>
+
+            <!-- <van-icon style="margin-left: 10rpx;" bindtap="showPop" name="info-o" size="18" /> -->
+            <van-icon wx:if="{{state}}" bind:tap="onCtrlSend" style="margin-left: 10rpx;" name="pause-circle-o" size="18" />
+            <van-icon wx:else bind:tap="onCtrlSend" style="margin-left: 10rpx;" name="play-circle-o" size="18" />
         </view>
     </custom-header>
 
-    <view style="position: relative;width: 100%;height: 50vh;">
+    <view style="position: relative;width: 100%;height: 50vh; z-index: 1;">
         <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ec}}"></ec-canvas>
     </view>
-    
+
 </view>
 
 

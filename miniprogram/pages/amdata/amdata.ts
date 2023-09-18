@@ -1,5 +1,5 @@
 import * as echarts from "../../components/ec-canvas/echarts.js"
-const app = getApp();
+const app: IAppOption = getApp();
 var chart1, chart2;
 var option1, option2;
 
@@ -66,7 +66,7 @@ function initChart(canvas, width, height, dpr) {
             // 平滑展示
             smooth: false,
             symbolSize: 0,
-            data: [[0, 1], [1, 2]]
+            data: []
         }]
     };
 
@@ -75,31 +75,45 @@ function initChart(canvas, width, height, dpr) {
 }
 
 Page({
-    onShareAppMessage: function (res) {
-        return {
-            title: 'ECharts 可以在微信小程序中使用啦！',
-            path: '/pages/index/index',
-            success: function () { },
-            fail: function () { }
-        }
-    },
-    engineTimer: null,
     data: {
+        width: `100% - ${app.globalData.systemInfo.width}rpx`,
+        state: true,
         ec: {
             onInit: initChart
         }
     },
+    // 轮询定时器
+    engineTimer: null,
     n: 0,
     onShow() {
+        this.initTimerSend();
+    },
+
+    initTimerSend() {
+        clearInterval(this.engineTimer);
         this.engineTimer = setInterval(() => {
             // 发动机转速
             app.obd.sendOBD('0142');
             this.n++;
-        }, 1000)
+        }, 500)
     },
 
     TCPcallback(message) {
         console.log(message, 233);
+        // 样本模式
+        if (message.includes('TEST')) {
+            // OBD电压
+            if (message.includes('0142')) {
+                let x = this.n * 1000;
+                let y = Math.floor(Math.random() * 12);
+                let chartData = option1.series[0].data;
+                chartData.push([x, y]);
+                chart1.setOption(option1)
+            }
+            return;
+        }
+
+        // 正式模式
         // OBD电压
         if (message.includes('4142')) {
             const [, value] = message.split('4142');
@@ -114,10 +128,22 @@ Page({
             chart1.setOption(option1)
         }
     },
+
+    // 点击事件：控制是否轮询
+    onCtrlSend() {
+        const { state } = this.data;
+        if (state) clearInterval(this.engineTimer);
+        if (!state) this.initTimerSend();
+        this.setData({ state: !state });
+    },
     onHide() {
         clearInterval(this.engineTimer)
     },
     onUnload() {
         clearInterval(this.engineTimer)
     },
+    onShareAppMessage(opts): WechatMiniprogram.Page.ICustomShareContent {
+        console.log(opts.target)
+        return {}
+    }
 });

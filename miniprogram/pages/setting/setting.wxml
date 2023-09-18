@@ -11,7 +11,7 @@
         
 		<view style="width: 100%; height: 30rpx;"></view>
 		<!-- 调试专用 -->
-        <input type="text" bindinput="demo" bindconfirm="submit"  />
+        <input type="text" placeholder="输入 pid 指令" bindinput="demo" bindconfirm="submit"  />
         <button type="primary" bindtap="submit">发送</button>
 		<scroll-view scroll-y style="width: 90%; border: 1rpx solid #ccc;margin: 0 auto; margin: 20rpx auto; height: 800rpx; border-radius: 10rpx;">
 			<view class="box" wx:for="{{list}}">

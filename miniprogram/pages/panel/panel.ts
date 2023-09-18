@@ -223,12 +223,33 @@ Page({
             app.obd.sendOBD('0105');
             // 车速
             app.obd.sendOBD('010D');
-        }, 200)
+        }, 1000)
     },
 
     TCPcallback(message) {
         message = message.replace(/\s/g, '');
         console.log("原始数据：", message);
+        // 样本模拟
+        if (message.includes('TEST')) {
+            // 转速
+            if (message.includes('010C')) {
+                let value = Math.floor(Math.random() * 7001)
+                option1.series[0].data[0].value = value;
+                chart1.setOption(option1)
+            }
+            // 车速
+            if (message.includes('010D')) {
+                let value = Math.floor(Math.random() * 210)
+                this.setData({ speed: value })
+            }
+            // 水温
+            if (message.includes('0105')) {
+                let value = Math.floor(Math.random() * 120)
+                option3.series[0].data[0].value = value;
+                chart3.setOption(option3)
+            }
+            return;
+        }
         // 转速
         if (message.includes('410C')) {
             const [, value] = message.split('410C');

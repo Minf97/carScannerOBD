@@ -1,3 +1,4 @@
+import Dialog from "../../../miniprogram_npm/@vant/weapp/dialog/dialog";
 import Toast from "../../../miniprogram_npm/@vant/weapp/toast/toast";
 import { decrypt03 } from "../../../utils/decrypt"
 
@@ -9,7 +10,7 @@ Page({
                 code: "P0082",
                 system: "引擎控制单元",
                 state: "暂时",
-                desc: "123123123"
+                desc: "故障码描述演示示例"
             },
             {
                 code: "P0082",
@@ -44,9 +45,12 @@ Page({
     },
 
     del({ currentTarget: { dataset: { index } } }) {
-        const { list } = this.data;
-        list.splice(index, 1);
-        this.setData({ list })
+        Dialog.confirm({ title: "温馨提示", message: "确定要忽略该故障码吗？" })
+            .then(() => {
+                const { list } = this.data;
+                list.splice(index, 1);
+                this.setData({ list });
+            })
     },
 
     onShareAppMessage() {
