@@ -24,3 +24,6 @@
             <view class="cc" bindtap="naviTo" data-index="clear">清空</view>
         </view>
 </view>
+
+<!-- 弹窗 -->
+<van-dialog id="van-dialog" />

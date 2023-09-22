@@ -146,8 +146,6 @@ class BluetoothApi {
         wx.onBLECharacteristicValueChange(({ deviceId, value }) => {
             // @ts-ignore
             let datas = Array.prototype.map.call(new Uint8Array(value), x => ('00' + x.toString(16)).slice(-2)).join('');
-
-            hexCharCodeToStr(datas)
             fn(hexCharCodeToStr(datas), deviceId)
         });
     }
@@ -186,7 +184,7 @@ class BluetoothApi {
 export class BluetoothModel {
     private connectInfo = {
         deviceId: "",
-        serviceId: "00001910-0000-1000-8000-00805F9B34FB",   // 示例值
+        serviceId: "0000FFF0-0000-1000-8000-00805F9B34FB",   // 示例值
         CharacteristicsId: "00002B10-0000-1000-8000-00805F9B34FB",  // 示例值
     }
     private writeInfo = {
@@ -218,7 +216,7 @@ export class BluetoothModel {
             .finally(() => {
                 this.getBLEDeviceServices()
                     .then((res) => {
-                        console.log(res);
+                        // console.log(res);
                         return this.getBLEDeviceCharacteristics()
                     })
                     .then((res) => {
@@ -320,15 +318,16 @@ export class BluetoothModel {
             wx.getBLEDeviceServices({
                 deviceId: this.connectInfo.deviceId,
                 success: (res) => {
-                    for (let i = 0; i < res.services.length; i++) {
-                        // 过滤得到主服务
-                        if (res.services[i].isPrimary) {
-                            this.connectInfo.serviceId = res.services[i].uuid;
-                            console.log(res.services[i].uuid);
+					// 根据uuid得到主服务，而不是看isPrimary来得到主服务
+                    // for (let i = 0; i < res.services.length; i++) {
+                    //     // 过滤得到主服务
+                    //     if (res.services[i].isPrimary) {
+                    //         this.connectInfo.serviceId = res.services[i].uuid;
+                    //         console.log(res.services[i].uuid, "过滤得到的主服务");
 
-                            break;
-                        }
-                    }
+                    //         break;
+					// 	}
+                    // }
                     reslove("[ok]5.获取蓝牙所有服务成功！")
                 },
                 fail: function (err) {
@@ -360,7 +359,7 @@ export class BluetoothModel {
                             this.connectInfo.CharacteristicsId = item.uuid
                         }
                     }
-                    console.log("%c拿到DeviceCharacteristic", res, "color:red");
+                    console.log("%c拿到主服务下的特征值：", res, "color:red");
                     console.log(this.writeInfo.CharacteristicsId, this.connectInfo.CharacteristicsId);
 
                     reslove("[ok]7.获取蓝牙下该服务的特征成功！")
@@ -416,6 +415,7 @@ export class BluetoothModel {
             fail: (err) => {
                 console.log("[2][error]3.sendMsg 发送指令失败:", err);
 				this.isSending = false;
+				this.receiveFlag = true;
             }
         })
     }

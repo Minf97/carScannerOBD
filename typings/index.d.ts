@@ -8,4 +8,5 @@ interface IAppOption {
   obd: import("../miniprogram/packages/Bluetooth").BluetoothModel | null,
   userInfoReadyCallback?: WechatMiniprogram.GetUserInfoSuccessCallback,
   isTest: boolean,
+  pidList: object[]
 }

@@ -1,11 +1,21 @@
 <!--index.wxml-->
 <view class="container">
-    <!-- 自定义头部 -->
-    <custom-header bgColor="#3a73ca" style="width: 100%; z-index: 999;">
-        <view class="head">
-            <van-icon bindtap="showPop" name="info-o" size="25" />
-        </view>
-    </custom-header>
+	<!-- 自定义头部 -->
+	<custom-header bgColor="#3a73ca" style="width: 100%; z-index: 999;">
+		<view class="head">
+			<van-icon bindtap="showPop" name="info-o" size="25" />
+		</view>
+	</custom-header>
 
-    <ec-canvas style="height: 50vh; background-image:linear-gradient(to bottom right, #2448a6, #122975) ;" id="mychart-dom-gauge" canvas-id="mychart-gauge1" ec="{{ ec }}"></ec-canvas>
+	<custom-body>
+		<!-- 可视区域 -->
+		<scroll-view class="infinite-list-container" style="height: {{screenHeight}};" scroll-y bindscroll="onScroll">
+			<!-- 占位，总列表高度 -->
+			<view class="infinite-list-phantom" style="height: {{listData.length * itemSize}}px;"></view>
+			<!-- 渲染区域 -->
+			<view class="infinite-list" style="transform: translate3d(0, {{ startOffset }}px, 0)">
+				<van-cell size="large" is-link wx:for="{{visibleData}}" title="{{item.name}}" value="{{item.value + ' ' + item.danwei}}" />
+			</view>
+		</scroll-view>
+	</custom-body>
 </view>

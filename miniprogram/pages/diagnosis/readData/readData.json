@@ -4,6 +4,7 @@
     "usingComponents": {
 		"van-cell": "@vant/weapp/cell/index",
 		"van-cell-group": "@vant/weapp/cell-group/index",
-		"van-tag": "@vant/weapp/tag/index"
+		"van-tag": "@vant/weapp/tag/index",
+		"van-empty": "@vant/weapp/empty/index"
 	}
 }

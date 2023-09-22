@@ -2,6 +2,8 @@
     "enablePullDownRefresh": false,
     "disableScroll": true,
     "usingComponents": {
-        "ec-canvas": "../../components/ec-canvas/ec-canvas"
+		"ec-canvas": "../../components/ec-canvas/ec-canvas",
+		"van-cell": "@vant/weapp/cell/index",
+		"van-cell-group": "@vant/weapp/cell-group/index"
     }
 }

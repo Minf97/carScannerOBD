@@ -19,6 +19,13 @@
 		</van-cell>
 	</block>
 
+	<van-empty wx:if="{{list.length == 0}}" description="未检测到故障码" />
+
+	<view wx:if="{{clear}}">
+		<view style="text-align: center;">DTC 清除完成！</view>
+		<view style="text-align: center;">请记住，重置或不重置 DTC 的最终决定是由您的汽车控制单元做出的。</view>
+		<view style="text-align: center;">清除故障码不是排除故障的方法！</view>
+	</view>
 
 
 </view>

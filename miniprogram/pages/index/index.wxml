@@ -10,7 +10,7 @@
   <custom-body bind:onPullDownRefresh="onPullDownRefresh">
     <view class="listBox">
       <view class="box" wx:for="{{list}}" wx:key="{{item.id}}" data-id="{{item.id}}" bindtap="{{item.event}}">
-        <image src="{{item.img}}" mode="aspectFill" />
+        <image src="{{ state ? item.activeImg : item.img}}" mode="aspectFill" />
         <view class="txt">{{item.txt}}</view>
       </view>
     </view>

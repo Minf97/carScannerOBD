@@ -1,6 +1,6 @@
 {
     "usingComponents": {
-      "ec-canvas": "../../components/ec-canvas/ec-canvas"
+		"van-cell": "@vant/weapp/cell/index"
     }
   }
   
