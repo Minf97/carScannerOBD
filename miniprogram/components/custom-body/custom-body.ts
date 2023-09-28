@@ -42,7 +42,7 @@ Component({
                 console.log("是tabbar");
             } catch (err) {
                 console.log("不是tabbar");
-                this.setData({ tabbarHeight: 0 })
+                this.setData({ tabbarHeight: "0px" })
             }
         },
     },

@@ -1,32 +1,32 @@
 <view class="container">
-	<!-- 自定义头部 -->
-	<custom-header backIconColor="#fff" back bgColor="#3a73ca" style="width: 100%; z-index: 999;">
-		<view class="head">
-			<view style="width: calc({{width}}); display: flex; text-align: center;">
-				<view style="flex: 1;">1</view>
-				<view style="flex: 1;">2</view>
-				<view style="flex: 1;">3</view>
-			</view>
+    <!-- 自定义头部 -->
+    <custom-header backIconColor="#fff" back bgColor="#3a73ca" style="width: 100%; z-index: 999;">
+        <view class="head">
+            <view style=" display: flex; text-align: center;">
+                实时数据
+            </view>
 
-			<!-- <van-icon style="margin-left: 10rpx;" bindtap="showPop" name="info-o" size="18" /> -->
-			<van-icon wx:if="{{state}}" bind:tap="onCtrlSend" style="margin-left: 10rpx;" name="pause-circle-o" size="18" />
-			<van-icon wx:else bind:tap="onCtrlSend" style="margin-left: 10rpx;" name="play-circle-o" size="18" />
-		</view>
-	</custom-header>
+            <!-- <van-icon style="margin-left: 10rpx;" bindtap="showPop" name="info-o" size="18" /> -->
+            <van-icon wx:if="{{state}}" bind:tap="onCtrlSend" style="margin-left: 10rpx;" name="pause-circle-o" size="18" />
+            <van-icon wx:else bind:tap="onCtrlSend" style="margin-left: 10rpx;" name="play-circle-o" size="18" />
 
-	<custom-body>
-		<view hidden="{{flagShowList}}" style="position: relative;width: 100%;height: 50vh; z-index: 1;">
-			<ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ec}}"></ec-canvas>
-		</view>
+            <van-icon bind:tap="onAdd" style="margin-left: 10rpx;" name="add-o" size="18" />
+        </view>
+    </custom-header>
 
-		<view hidden="{{!flagShowList}}">
-			<van-cell-group title="请选择">
-				<van-cell size="large" is-link wx:for="{{pidList}}" title="{{item.name}}" value="" data-index="{{item}}" bind:tap="onSetAmData" />
-			</van-cell-group>
-		</view>
-	</custom-body>
+    <custom-body>
+        <view hidden="{{flagShowList}}" style="height: 100%;">
+            <view wx:for="{{ecList}}" wx:if="{{item.value}}" data-index="{{item.key}}" bind:longpress="onLongPress" style="position: relative; width: 100%;height: 50%; z-index: 1;">
+                <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{item.value}}"></ec-canvas>
+            </view>
+        </view>
 
-
+        <view hidden="{{!flagShowList}}">
+            <van-cell-group title="请选择">
+                <van-cell size="large" is-link wx:for="{{pidList}}" title="{{item.name}}" value="" data-index="{{item}}" bind:tap="onSetAmData" />
+            </van-cell-group>
+        </view>
+    </custom-body>
 </view>
 
 
@@ -36,12 +36,12 @@
 <van-dialog id="van-dialog" />
 
 <custom-action show="{{show}}" bind:onClickHide="onClickHide">
-	<view class="header"> 仪表板 </view>
-	<view class="txt_action">
-		<view>在仪表板状态下可以随意设置一下参数显示。</view>
-		<view>仪表板由页面构成，页面上包含传感器。</view>
-		<view>您可以增加无限个页面，一一设置各个传感器的显示。</view>
-		<view>提示: 按一下小齿轮图标可以设置。</view>
-		<view>你可以用于您手机在挡风玻璃上作HUD投射。您需要按一下镜子图标，将手机放在挡风玻璃前面。建议使用深色主题并设置到最亮亮度。注意!请您固定好手机，不然手机可能掉落损坏!</view>
-	</view>
+    <view class="header"> 仪表板 </view>
+    <view class="txt_action">
+        <view>在仪表板状态下可以随意设置一下参数显示。</view>
+        <view>仪表板由页面构成，页面上包含传感器。</view>
+        <view>您可以增加无限个页面，一一设置各个传感器的显示。</view>
+        <view>提示: 按一下小齿轮图标可以设置。</view>
+        <view>你可以用于您手机在挡风玻璃上作HUD投射。您需要按一下镜子图标，将手机放在挡风玻璃前面。建议使用深色主题并设置到最亮亮度。注意!请您固定好手机，不然手机可能掉落损坏!</view>
+    </view>
 </custom-action>

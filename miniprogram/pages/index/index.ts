@@ -179,10 +179,8 @@ Page({
 				txtExit: "离开样本模式"
 			});
 			app.obd = app.testOBD;
-			console.log(app.obd);
-
 			Toast.clear()
-		}, 1000);
+		}, 500);
 	},
 
 	disconnect() {

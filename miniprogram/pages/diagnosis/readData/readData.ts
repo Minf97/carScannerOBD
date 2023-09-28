@@ -38,8 +38,11 @@ Page({
 			}
 			if (message.includes('04')) {
 				this.setData({ list: [], clear: true });
-			}
-			Toast.clear();
+            }
+            setTimeout(() => {
+                Toast.clear();
+            }, 1000);
+			
 			return;
 		}
 		// 正式模式
