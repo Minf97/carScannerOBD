@@ -1,6 +1,6 @@
 <!-- 自定义头部 -->
 <custom-header backIconColor="#fff" bgColor="#3a73ca" back style="width: 100%; z-index: 999;">
-	<view class="head"> 阅读 </view>
+	<view class="head" style="font-size: 30rpx;"> 阅读 </view>
 </custom-header>
 
 <view class="container">

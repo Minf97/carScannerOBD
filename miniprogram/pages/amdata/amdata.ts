@@ -179,11 +179,9 @@ Page({
     engineTimer: null,
     n: 0,
     onLoad() {
-        const amDataList = wx.getStorageSync('amDataList');
-        if (!amDataList) {
-            this.setData({ flagShowList: true });
-            return;
-        }
+        // 这里没处理好
+        const { pidList } = this.data;
+        const amDataList = wx.getStorageSync('amDataList') || [pidList[0]];
         this.setData({ amDataList });
         this.initTimerSend();
     },
@@ -239,7 +237,6 @@ Page({
         // 正式模式
         amDataList.map((item, index) => {
             const command = `4${item.command.slice(1)}`;
-
             if (message.includes(command)) {
                 const [, value] = message.split(command);
                 const x = this.n * 1000;
@@ -275,20 +272,19 @@ Page({
     },
     // 点击事件：设置 amdata
     onSetAmData({ currentTarget: { dataset: { index } } }) {
-        const {ecList} = this.data;
+        const { ecList } = this.data;
         const amDataList = wx.getStorageSync('amDataList') || [];
         amDataList.push(index);
         wx.setStorageSync('amDataList', amDataList);
         ecList.forEach((item, index) => {
-            if(item.value === null) {
-                console.log(item.key, "key123");
-                
+            if (item.value === null) {
                 item.value = {
                     onInit: index ? initChart2 : initChart1
                 }
             }
         })
-        this.setData({ amDataList, flagShowList: false , ecList})
+        this.initTimerSend();
+        this.setData({ amDataList, flagShowList: false, ecList })
     },
     onHide() {
         clearInterval(this.engineTimer)

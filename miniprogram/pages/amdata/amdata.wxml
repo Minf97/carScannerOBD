@@ -2,7 +2,7 @@
     <!-- 自定义头部 -->
     <custom-header backIconColor="#fff" back bgColor="#3a73ca" style="width: 100%; z-index: 999;">
         <view class="head">
-            <view style=" display: flex; text-align: center;">
+            <view style=" display: flex; text-align: center; font-size: 30rpx;">
                 实时数据
             </view>
 

@@ -115,7 +115,6 @@ Page({
 	},
 
 	TCPcallback(message) {
-		console.log(message);
 		if (message != decrypt0902(message)) {
 			this.setData({ VIN: decrypt0902(message) });
 			// 接收到0902才算完成初始化
@@ -145,7 +144,6 @@ Page({
 			.catch(err => Toast.fail(err.errMsg))
 		// 监听搜索到的蓝牙
 		Bluetooth.onBluetoothDeviceFound((res) => {
-
 			this.obd = new BluetoothModel(res[0].deviceId);
 			app.obd = this.obd;
 			this.setData({
