@@ -23,7 +23,7 @@
 
         <view hidden="{{!flagShowList}}">
             <van-cell-group title="请选择">
-                <van-cell size="large" is-link wx:for="{{pidList}}" title="{{item.name}}" value="" data-index="{{item}}" bind:tap="onSetAmData" />
+                <van-cell size="large" is-link wx:for="{{pidList}}" title="{{item.name}}" value="" data-index="{{index}}" bind:tap="onSetAmData" />
             </van-cell-group>
         </view>
     </custom-body>

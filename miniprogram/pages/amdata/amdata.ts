@@ -213,7 +213,7 @@ Page({
     },
 
     TCPcallback(message) {
-        const { amDataList } = this.data;
+        const { amDataList, pidList } = this.data;
         console.log(message, 233);
         // 样本模式
         if (message.includes('TEST')) {
@@ -238,18 +238,22 @@ Page({
         amDataList.map((item, index) => {
             const command = `4${item.command.slice(1)}`;
             if (message.includes(command)) {
-                const [, value] = message.split(command);
-                const x = this.n * 1000;
-                const y = parseInt(value, 16);
-                // title修改
-                optionList[index].title.text = item.name;
-                let chartData = optionList[index].series[0].data;
-                // 数据过长时截断
-                if (chartData.length > 20) {
-                    optionList[index].series[0].data = chartData.splice(10);
-                }
-                chartData.push([x, y]);
-                chartList[index].setOption(optionList[index]);
+                pidList.forEach(pid => {
+                    if(item.name == pid.name) {
+                        const [, value] = message.split(command);
+                        const x = this.n * 1000;
+                        const y = Math.floor(pid.handle(parseInt(value, 16)));
+                        // title修改
+                        optionList[index].title.text = item.name;
+                        let chartData = optionList[index].series[0].data;
+                        // 数据过长时截断
+                        if (chartData.length > 20) {
+                            optionList[index].series[0].data = chartData.splice(10);
+                        }
+                        chartData.push([x, y]);
+                        chartList[index].setOption(optionList[index]);
+                    }
+                })
             }
         })
     },
@@ -272,9 +276,10 @@ Page({
     },
     // 点击事件：设置 amdata
     onSetAmData({ currentTarget: { dataset: { index } } }) {
-        const { ecList } = this.data;
+        const { ecList, pidList } = this.data;
         const amDataList = wx.getStorageSync('amDataList') || [];
-        amDataList.push(index);
+
+        amDataList.push(pidList[index]);
         wx.setStorageSync('amDataList', amDataList);
         ecList.forEach((item, index) => {
             if (item.value === null) {

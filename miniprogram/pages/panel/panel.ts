@@ -253,7 +253,7 @@ Page({
         // 转速
         if (message.includes('410C')) {
             const [, value] = message.split('410C');
-            option1.series[0].data[0].value = parseInt(value, 16);
+            option1.series[0].data[0].value = Math.floor(parseInt(value, 16) / 4);
             chart1.setOption(option1)
         }
         // 车速
@@ -264,7 +264,7 @@ Page({
         // 水温
         if (message.includes('4105')) {
             const [, value] = message.split('4105');
-            option3.series[0].data[0].value = parseInt(value, 16);
+            option3.series[0].data[0].value = parseInt(value, 16) - 40;
             chart3.setOption(option3)
         }
     },

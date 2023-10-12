@@ -93,7 +93,7 @@ Page({
 	obd: null,
 
 	onLoad() {
-
+        Toast.success('123')
 	},
 
 	naviTo({ currentTarget: { dataset: { id } } }) {
@@ -135,7 +135,7 @@ Page({
 			Toast.clear();
 			Dialog.alert({
 				title: "提示",
-				message: "没有搜索到！请检查设备是否开启"
+				message: "没有搜索到！请检查设备是否开启，或重新插拔OBD设备"
 			})
 		}, 10000);
 		// 开始搜索
@@ -149,7 +149,8 @@ Page({
 			this.setData({
 				state: true,
 				ELM: "已连接",
-				ECU: "已连接"
+                ECU: "已连接",
+                txtExit: "断开"
 			})
 			Bluetooth.stopBluetoothDevicesDiscovery();
 			// 清除定时器
